@@ -10,6 +10,8 @@ package com.wisely.highlight_spring_mvc4.ch4.y02.web;
  **/
 
 /**
+ * 传值类
+ *
  * 此类用来演示获取request对象参数和返回此对象到response
  * <p>
  * 1、Jackson 对 对象 和json 做转换时一定需要此孔构造。
