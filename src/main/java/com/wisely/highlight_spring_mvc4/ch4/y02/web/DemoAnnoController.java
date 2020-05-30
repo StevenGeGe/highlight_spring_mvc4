@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,7 +33,7 @@ import javax.servlet.http.HttpServletRequest;
  * 8、@ResponseBody 也可以用在方法上。
  * 9、演示映射不同的路径到相同的方法，访问路径 /anno/name1 或 /annon/name2 .
  */
-@Controller  //1
+@RestController
 @RequestMapping("/anno")  //2
 public class DemoAnnoController {
     @RequestMapping(produces = "text/plain;charset=UTF-8")  //3
@@ -41,7 +42,7 @@ public class DemoAnnoController {
         return "url:" + request.getRequestURL() + " can access";
     }
 
-    @RequestMapping(value = "/pathvar/{str}", produces = "text/plain;charset=UTF-8")  //5
+    @RequestMapping(value = "/pathVar/{str}", produces = "text/plain;charset=UTF-8")  //5
     public @ResponseBody
     String demoPathVar(@PathVariable String str, HttpServletRequest request) {
         return "url:" + request.getRequestURL() + " can access,str:" + str;
@@ -55,10 +56,10 @@ public class DemoAnnoController {
 
     @RequestMapping(value = "/obj", produces = "application/json;charset=UTF-8")  //7
     public String passObj(DemoObj demoObj, HttpServletRequest request) {
-        return "url" + request.getRequestURL() + " can access, obj id: " + demoObj.getId() + " obj name: " + demoObj.getName();
+        return "url:" + request.getRequestURL() + " can access, obj id: " + demoObj.getId() + " obj name: " + demoObj.getName();
     }
 
-    @RequestMapping(value = {"/name1", "/name3"}, produces = "text/plain;charset=UTF-8")  //8
+    @RequestMapping(value = {"/name1", "/name2"}, produces = "text/plain;charset=UTF-8")  //8
     public @ResponseBody
     String remove(HttpServletRequest request) {
         return "url:" + request.getRequestURL() + " can access";
